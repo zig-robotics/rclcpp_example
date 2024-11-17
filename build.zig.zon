@@ -1,0 +1,22 @@
+.{
+    .name = "rclcpp_examples",
+    .version = "0.1.0",
+    .dependencies = .{
+        .rclcpp = .{
+            .url = "https://github.com/zig-robotics/rclcpp/archive/874bff4b3005970f02e67a386032c6953f3f7731.tar.gz",
+            .hash = "1220e4e3d2115443f39b0fed15be21865ae7992563176db043e07558c881515fe121",
+        },
+        .rmw_cyclonedds = .{
+            .url = "https://github.com/zig-robotics/rmw_cyclonedds/archive/0b8b8daf9976558877b0617e8c2a00773c3c1c07.tar.gz",
+            .hash = "122075f79147ff0048de82ee03286f96e30c6a878f8098ea7ec4c671c6f7240e4082",
+        },
+        .rcl_logging = .{ // could get from rcl,leave here to make obvious you picl logger implementation here?
+            .url = "https://github.com/zig-robotics/rcl_logging/archive/1e97b20d8cb6f42e1c2f58ac7ba306817610996a.tar.gz",
+            .hash = "122000f4258b7d1260359370bb2ce64710e0ff580f64c700843416d679fb759dffe7",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+    },
+}
