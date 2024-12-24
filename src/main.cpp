@@ -1,11 +1,10 @@
-
 #include "rclcpp/rclcpp.hpp"
 #include "builtin_interfaces/msg/time.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[]) {
   rclcpp::init(argc, argv);
-  const auto node = std::make_shared<rclcpp::Node>("example_node");
+  const auto node = std::make_shared<rclcpp::Node>("example_node", rclcpp::NodeOptions().use_intra_process_comms(true));
   const auto publisher = rclcpp::create_publisher<builtin_interfaces::msg::Time>(node, "test", 1);
   const auto subscription = rclcpp::create_subscription<builtin_interfaces::msg::Time>(
     node,
