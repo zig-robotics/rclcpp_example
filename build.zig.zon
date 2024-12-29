@@ -3,8 +3,8 @@
     .version = "0.1.0",
     .dependencies = .{
         .zigros = .{
-            .url = "https://github.com/zig-robotics/zigros/archive/fc3e5e9952b7f40544737a39ef0cec9d07c356ee.tar.gz",
-            .hash = "1220051e7e4ba9648433c8801a717895618cb3241ff2111accb70efa51483e786800",
+            .url = "https://github.com/zig-robotics/zigros/archive/223769cc160a996ec9b1be0c27c9e767c23b411e.tar.gz",
+            .hash = "12201d34f6ffa34e2451af00e279c5582b2b5b7861f60e2cb19f9e2c4791194a29ca",
         },
     },
     .paths = .{

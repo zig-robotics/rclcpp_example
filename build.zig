@@ -23,13 +23,13 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
         .linkage = linkage,
-        .system_python = false,
+        .@"system-python" = false,
     })) orelse return; // return early if lazy deps are needed
 
     pub_sub_node.linkLibCpp();
     zigros.linkRclcpp(&pub_sub_node.root_module);
     zigros.linkRmwCycloneDds(&pub_sub_node.root_module);
-    zigros.linkLoggerSpdp(&pub_sub_node.root_module);
+    zigros.linkLoggerSpd(&pub_sub_node.root_module);
 
     pub_sub_node.addCSourceFiles(.{
         .root = b.path("src"),
@@ -39,5 +39,18 @@ pub fn build(b: *std.Build) void {
             "-Wno-deprecated-declarations",
         },
     });
+
+    var interface = zigros.createInterface(
+        b,
+        "zigros_example_interface",
+        .{ .target = target, .optimize = optimize, .linkage = linkage },
+    );
+    interface.addInterfaces(b.path(""), &.{"msg/Example.msg"});
+
+    // the example message uses the standard header message, so we must add builtin_interfaces
+    // as a dependency
+    interface.addDependency("builtin_interfaces", zigros.ros_libraries.builtin_interfaces);
+    interface.artifacts.linkCpp(&pub_sub_node.root_module);
+
     b.installArtifact(pub_sub_node);
 }
