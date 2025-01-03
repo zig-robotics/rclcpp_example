@@ -5,7 +5,11 @@ const ZigRos = @import("zigros").ZigRos;
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
-    const linkage = .static;
+    const linkage = b.option(
+        std.builtin.LinkMode,
+        "linkage",
+        "Specify static or dynamic linkage",
+    ) orelse .static;
 
     var pub_sub_node = b.addExecutable(.{
         .name = "node",
@@ -53,4 +57,7 @@ pub fn build(b: *std.Build) void {
     interface.artifacts.linkCpp(&pub_sub_node.root_module);
 
     b.installArtifact(pub_sub_node);
+    if (linkage == .dynamic) {
+        interface.installArtifacts();
+    }
 }
