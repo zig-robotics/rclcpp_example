@@ -3,7 +3,7 @@
     .version = "0.1.0",
     .dependencies = .{
         .zigros = .{
-            .url = "https://github.com/zig-robotics/zigros/archive/223769cc160a996ec9b1be0c27c9e767c23b411e.tar.gz",
+            .url = "https://github.com/zig-robotics/zigros/archive/refs/tags/v0.1.0.tar.gz",
             .hash = "12201d34f6ffa34e2451af00e279c5582b2b5b7861f60e2cb19f9e2c4791194a29ca",
         },
     },
