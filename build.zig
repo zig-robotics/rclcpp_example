@@ -35,9 +35,9 @@ pub fn build(b: *std.Build) void {
     })) orelse return; // return early if lazy deps are needed
 
     pub_sub_node.linkLibCpp();
-    zigros.linkRclcpp(&pub_sub_node.root_module);
-    zigros.linkRmwCycloneDds(&pub_sub_node.root_module);
-    zigros.linkLoggerSpd(&pub_sub_node.root_module);
+    zigros.linkRclcpp(pub_sub_node.root_module);
+    zigros.linkRmwCycloneDds(pub_sub_node.root_module);
+    zigros.linkLoggerSpd(pub_sub_node.root_module);
 
     pub_sub_node.addIncludePath(b.path("include"));
     pub_sub_node.addCSourceFiles(.{
@@ -68,7 +68,7 @@ pub fn build(b: *std.Build) void {
     // as a dependency
     interface.addDependency("builtin_interfaces", zigros.ros_libraries.builtin_interfaces);
     interface.addDependency("service_msgs", zigros.ros_libraries.service_msgs);
-    interface.artifacts.linkCpp(&pub_sub_node.root_module);
+    interface.artifacts.linkCpp(pub_sub_node.root_module);
 
     b.installArtifact(pub_sub_node);
     if (linkage == .dynamic) {
